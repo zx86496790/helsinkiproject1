@@ -26,7 +26,7 @@
             $result = $conn->query($sql);
 
             if($result) {
-                header('Location: comment.php?user_id='.mysqli_fetch_assoc($result)['id'] );
+                header('Location: comment.php?login=1&user_id='.mysqli_fetch_assoc($result)['id'] );
             } else {
                 echo 'LOGIN FAILED';
             }
