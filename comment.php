@@ -9,6 +9,10 @@
 
 
     <?php
+    if(empty($_GET['login']) || $_GET['login']!=1) {
+        echo 'you do not have access to this page';
+        exit();
+    }
        if(!empty($_GET['content'])) {
             $servername = "localhost";
             $username = "root";
@@ -26,7 +30,7 @@
             $result = $conn->query($sql);
 
             if($result) {
-                header('Location: comment.php?user_id='.mysqli_fetch_assoc($result)['id'] );
+                header('Location: comment.php?login=1&user_id='.mysqli_fetch_assoc($result)['id'] );
             } else {
                 echo 'leave comments';
             }
@@ -36,7 +40,7 @@
     ?>
 
     <a href="index.php">back to main page</a>
-    <form action="comment.php" method="get">
+    <form action="comment.php?login=1&user_id=". method="get">
         <input name="content" type="text"/>
         <input name="user_id" type="hidden" value="<?php echo $_GET['user_id'] ?>" />
         <input name="submit" type="submit" value="submit"/>
